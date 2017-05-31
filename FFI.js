@@ -1,10 +1,22 @@
 "use strict"
 
+function callEffAsCurried(f, args) {
+  return args.reduce(function(prev, curr) {
+    return prev(curr);
+  }, f)();
+}
+
 exports.unsafeSetFieldEff = function(key) {
   return function(x) {
     return function(obj) {
       return function() {
-        obj[key] = x
+        if (x instanceof Function) {
+          obj[key] = function() {
+            return callEffAsCurried(x, Array.prototype.slice.call(arguments))
+          }
+        } else {
+          obj[key] = x
+        }
       }
     }
   }

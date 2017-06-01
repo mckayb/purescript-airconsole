@@ -1,4 +1,4 @@
-module Airconsole.DeviceStates where
+module AirConsole.DeviceStates where
 
 import Control.Monad.Eff (Eff)
 import AirConsole.Types (AirConsoleGlobal, DeviceID)

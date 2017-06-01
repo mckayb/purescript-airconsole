@@ -1,17 +1,25 @@
 {
   "name": "purescript-airconsole",
+  "homepage": "https://github.com/mckayb/purescript-airconsole",
+  "description": "AirConsole bindings for Purescript",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mckayb/purescript-airconsole.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "output"
+    "output",
+    "test",
+    "bower.json",
+    "generated-docs"
   ],
   "dependencies": {
     "purescript-prelude": "^3.0.0",
-    "purescript-console": "^3.0.0",
-    "purescript-maybe": "^3.0.0"
+    "purescript-maybe": "^3.0.0",
+    "purescript-eff": "^3.1.0"
   },
-  "devDependencies": {
-    "purescript-psci-support": "^3.0.0"
-  }
+  "devDependencies": {}
 }

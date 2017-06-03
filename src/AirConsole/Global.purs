@@ -5,7 +5,7 @@ import Control.Monad.Eff (Eff)
 import AirConsole.Types ( AirConsoleGlobal
                         , AirConsoleOpts
                         , MandatoryAirConsoleOpts
-                        , DeviceID
+                        , DeviceId
                         , Orientation
                         , PlayerNumber
                         )
@@ -14,30 +14,30 @@ import AirConsole.FFI (unsafeSetFieldEff)
 foreign import getAirConsoleGlobalImpl :: forall e r. Record (MandatoryAirConsoleOpts r) -> Eff e AirConsoleGlobal
 foreign import orientationPortrait :: Orientation
 foreign import orientationLandscape :: Orientation
-foreign import screen :: DeviceID
+foreign import screen :: DeviceId
 
 getAirConsoleGlobal :: forall e r. Record (MandatoryAirConsoleOpts r) -> Eff e AirConsoleGlobal
 getAirConsoleGlobal opts = getAirConsoleGlobalImpl opts
 
-onDisconnect :: forall e a e2. (DeviceID -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onDisconnect :: forall e a e2. (DeviceId -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onDisconnect f x = unsafeSetFieldEff "onDisconnect" f x
 
-onConnect :: forall e a e2. (DeviceID -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onConnect :: forall e a e2. (DeviceId -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onConnect f x = unsafeSetFieldEff "onConnect" f x
 
 onReady :: forall e a. (String -> Eff e a) -> AirConsoleGlobal -> Eff e Unit
 onReady f x = unsafeSetFieldEff "onReady" f x
 
-onMessage :: forall x e a e2. (DeviceID -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onMessage :: forall x e a e2. (DeviceId -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onMessage f x = unsafeSetFieldEff "onMessage" f x
 
-onCustomDeviceStateChange :: forall x e a e2. (DeviceID -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onCustomDeviceStateChange :: forall x e a e2. (DeviceId -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onCustomDeviceStateChange f x = unsafeSetFieldEff "onCustomDeviceStateChange" f x
 
-onDeviceStateChange :: forall x e a e2. (DeviceID -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onDeviceStateChange :: forall x e a e2. (DeviceId -> x -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onDeviceStateChange f x = unsafeSetFieldEff "onDeviceStateChange" f x
 
-onDeviceProfileChange :: forall e a e2. (DeviceID -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
+onDeviceProfileChange :: forall e a e2. (DeviceId -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onDeviceProfileChange f x = unsafeSetFieldEff "onDeviceProfileChange" f x
 
 onEmailAddress :: forall e a e2. (String -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit

@@ -1,6 +1,6 @@
 module AirConsole.Types
     ( AirConsoleGlobal
-    , DeviceID
+    , DeviceId
     , Orientation
     , PlayerNumber
     , AirConsoleOpts
@@ -13,7 +13,7 @@ import AirConsole.FFI (merge)
 
 foreign import data AirConsoleGlobal :: Type
 
-type DeviceID = Number
+type DeviceId = Number
 type Orientation = String
 type PlayerNumber = Number
 

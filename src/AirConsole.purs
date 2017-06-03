@@ -93,7 +93,7 @@ import AirConsole.Profile ( editProfile
                           , requestEmailAddress
                           )
 import AirConsole.Types ( AirConsoleGlobal
-                        , DeviceID
+                        , DeviceId
                         , Orientation
                         , PlayerNumber
                         , AirConsoleOpts

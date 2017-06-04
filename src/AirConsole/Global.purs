@@ -3,7 +3,6 @@ module AirConsole.Global where
 import Prelude (Unit)
 import Control.Monad.Eff (Eff)
 import AirConsole.Types ( AirConsoleGlobal
-                        , AirConsoleOpts
                         , MandatoryAirConsoleOpts
                         , DeviceId
                         , Orientation

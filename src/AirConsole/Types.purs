@@ -13,7 +13,7 @@ import AirConsole.FFI (merge)
 
 foreign import data AirConsoleGlobal :: Type
 
-type DeviceId = Number
+type DeviceId = Int
 type Orientation = String
 type PlayerNumber = Number
 

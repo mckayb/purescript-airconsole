@@ -15,7 +15,7 @@ foreign import data AirConsoleGlobal :: Type
 
 type DeviceId = Int
 type Orientation = String
-type PlayerNumber = Number
+type PlayerNumber = Int
 
 type MandatoryAirConsoleOpts r = (orientation :: Orientation | r)
 type OptionalAirConsoleOpts r = ( orientation :: Orientation

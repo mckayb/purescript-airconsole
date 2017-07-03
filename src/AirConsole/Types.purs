@@ -1,45 +1,22 @@
-module AirConsole.Types
-    ( AirConsoleGlobal
-    , DeviceId
-    , Orientation
-    , PlayerNumber
-    , AirConsoleOpts
-    , MandatoryAirConsoleOpts
-    , getAirConsoleOpts
-    ) where
+module AirConsole.Types where
 
-import Data.Maybe (Maybe(Nothing))
-import AirConsole.FFI (merge)
+import Data.Options (Option, opt)
 
 foreign import data AirConsoleGlobal :: Type
+foreign import data AirConsoleOption :: Type
 
 type DeviceId = Int
 type Orientation = String
 type PlayerNumber = Int
 
-type MandatoryAirConsoleOpts r = (orientation :: Orientation | r)
-type OptionalAirConsoleOpts r = ( orientation :: Orientation
-                                , synchronize_time :: Maybe Boolean
-                                , setup_document :: Maybe Boolean
-                                , device_motion :: Maybe Number
-                                | r
-                                )
-type AirConsoleOpts r = Record (MandatoryAirConsoleOpts r)
+orientation :: Option AirConsoleOption Orientation
+orientation = opt "orientation"
 
-getAirConsoleOpts
-  :: forall r s
-   . Union r ( synchronize_time :: Maybe Boolean
-             , setup_document :: Maybe Boolean
-             , device_motion :: Maybe Number
-             )
-             ( synchronize_time :: Maybe Boolean
-             , setup_document :: Maybe Boolean
-             , device_motion :: Maybe Number
-             | s
-             )
-  => Record (MandatoryAirConsoleOpts r)
-  -> Record (OptionalAirConsoleOpts s)
-getAirConsoleOpts p = merge p { synchronize_time: Nothing
-                              , setup_document: Nothing
-                              , device_motion: Nothing
-                              }
+synchronize_time :: Option AirConsoleOption Boolean
+synchronize_time = opt "synchronize_time"
+
+setup_document :: Option AirConsoleOption Boolean
+setup_document = opt "setup_document"
+
+device_motion :: Option AirConsoleOption Number
+device_motion = opt "device_motion"

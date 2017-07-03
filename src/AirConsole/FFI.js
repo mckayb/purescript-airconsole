@@ -115,11 +115,3 @@ exports.runEffFn6 = function(key) {
     }
   }
 }
-
-exports.merge = function (dict) {
-  return function (l) {
-    return function (r) {
-      return Object.assign({}, l, r)
-    }
-  }
-}

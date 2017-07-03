@@ -13,10 +13,3 @@ foreign import runEffFn1 :: forall x y e a. String -> x -> y -> Eff e a
 foreign import runEffFn2 :: forall x y z e a. String -> x -> y -> z -> Eff e a
 foreign import runEffFn3 :: forall w x y z e a. String -> w -> x -> y -> z -> Eff e a
 foreign import runEffFn6 :: forall s t u w x y z e a. String -> s -> t -> u -> w -> x -> y -> z -> Eff e a
-
-foreign import merge
-    :: forall r1 r2 r3
-     . Union r1 r2 r3
-    => Record r1
-    -> Record r2
-    -> Record r3

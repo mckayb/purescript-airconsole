@@ -3,20 +3,22 @@ module AirConsole.Global where
 import Prelude (Unit)
 import Control.Monad.Eff (Eff)
 import AirConsole.Types ( AirConsoleGlobal
-                        , MandatoryAirConsoleOpts
+                        , AirConsoleOption
                         , DeviceId
                         , Orientation
                         , PlayerNumber
                         )
 import AirConsole.FFI (unsafeSetFieldEff)
+import Data.Options (Options, options)
+import Data.Foreign (Foreign)
 
-foreign import getAirConsoleGlobalImpl :: forall e r. Record (MandatoryAirConsoleOpts r) -> Eff e AirConsoleGlobal
+foreign import getAirConsoleGlobalImpl :: forall e. Foreign -> Eff e AirConsoleGlobal
 foreign import orientationPortrait :: Orientation
 foreign import orientationLandscape :: Orientation
 foreign import screen :: DeviceId
 
-getAirConsoleGlobal :: forall e r. Record (MandatoryAirConsoleOpts r) -> Eff e AirConsoleGlobal
-getAirConsoleGlobal opts = getAirConsoleGlobalImpl opts
+getAirConsoleGlobal :: forall e. Options AirConsoleOption -> Eff e AirConsoleGlobal
+getAirConsoleGlobal opts = getAirConsoleGlobalImpl (options opts)
 
 onDisconnect :: forall e a e2. (DeviceId -> Eff e a) -> AirConsoleGlobal -> Eff e2 Unit
 onDisconnect f x = unsafeSetFieldEff "onDisconnect" f x

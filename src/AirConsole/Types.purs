@@ -6,6 +6,7 @@ foreign import data AirConsoleGlobal :: Type
 foreign import data AirConsoleOption :: Type
 
 type DeviceId = Int
+type DeviceUid = String
 type Orientation = String
 type PlayerNumber = Int
 

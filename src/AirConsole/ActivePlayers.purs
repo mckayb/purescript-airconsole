@@ -1,5 +1,6 @@
 module AirConsole.ActivePlayers where
 
+import Prelude (Unit)
 import Control.Monad.Eff (Eff)
 import AirConsole.Types (AirConsoleGlobal, PlayerNumber, DeviceId)
 import AirConsole.FFI (runFn0, runFn1, runEffFn1)
@@ -14,5 +15,5 @@ convertPlayerNumberToDeviceId x n = runFn1 "convertPlayerNumberToDeviceId" x n
 getActivePlayerDeviceIds :: AirConsoleGlobal -> Array DeviceId
 getActivePlayerDeviceIds x = runFn0 "getActivePlayerDeviceIds" x
 
-setActivePlayers :: forall e a. AirConsoleGlobal -> Int -> Eff e a
+setActivePlayers :: forall e. AirConsoleGlobal -> Int -> Eff e Unit
 setActivePlayers x m = runEffFn1 "setActivePlayers" x m
